@@ -1,0 +1,66 @@
+
+body {
+    font-family: 'Black Ops One', cursive;
+    /* font-family: 'Wallpoet', cursive; */
+    background-image: url(../img/wood.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100%;
+}
+
+
+#trivia-q p {
+    padding: 10px;
+}
+
+#progressBar[value] {
+    /* Reset the default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: blue;
+    height: 20px;
+}
+
+.buttonT {
+    background: black;
+    color: khaki;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.buttonT:hover {
+    cursor:pointer;
+}
+
+#questions {
+    min-height: 400px;
+    /*background:#4b5320;*/
+    background-image: url(../img/greenchalkboard.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    
+}
+
+#questions span {
+    width: 150px;
+    color: khaki;
+}
+
+#questions span:hover{
+    cursor: pointer;
+}
+
+
+
+#answers {
+    min-height: 300px;
+    background-image: url(../img/paper.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+}
