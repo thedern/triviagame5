@@ -21,21 +21,6 @@ body {
     height: 20px;
 }
 
-.buttonT {
-    background: black;
-    color: khaki;
-    padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin-right: 5px;
-}
-
-.buttonT:hover {
-    cursor:pointer;
-}
-
 #questions {
     min-height: 400px;
     /*background:#4b5320;*/
@@ -55,7 +40,10 @@ body {
     cursor: pointer;
 }
 
-
+/* cascade dictates this postion for score span */
+#questions #score {
+    color: darkred;
+}
 
 #answers {
     min-height: 300px;
@@ -63,4 +51,9 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
    
+}
+
+#answers h3 {
+    color: darkblue;
+    font-size: 2.5em;
 }

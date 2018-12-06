@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', function(){
     // Global Variables
     var main = document.getElementById('trivia-q');
     var answers = document.getElementById('trivia-a');
+    var score = document.getElementById('score');
+    var spacer = document.createElement('br');
+    var totalScore = 0;
+    // progress bar
+    var pg;
+    
 
     // Trivia Object Constructor
     var trivia = function (question, option1, option2, option3, answer, fact) {
@@ -23,11 +29,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
     var tortoise = new trivia('Which animal has the longest lifespan?', 'whale', 'elephant', 'turtle', 'tortoise', 'Giant Tortoises may live up to between 150 - 177 years');
 
-    var sloth = new trivia('What is the worlds slowest moving animal relative to its size?', 'starfish', 'snail', 'your tax return', 'sloth', 'Three Toed Sloth only reaches a max speed of 0.003mph, which is slower than the average starfish');
+    var sloth = new trivia('What is the worlds slowest moving animal relative to its size?', 'starfish', 'snail', 'your tax return', 'sloth', 'The Three Toed Sloth only reaches a max speed of 0.003mph, which is slower than the average starfish');
 
-    var falcon = new trivia('What is the fastest animal alive?', 'cheeta', 'dolphin', 'tuna', 'falcon',  'Peregrine Falcon may reach dive speeds approaching 200mph');
+    var falcon = new trivia('What is the fastest animal alive?', 'cheeta', 'dolphin', 'tuna', 'falcon',  'The Peregrine Falcon may reach dive speeds approaching 200mph');
 
-    var bat = new trivia('What is the worlds smallest mammal?', 'lemur', 'mouse', 'mole', 'bat', 'The Bumble Bee Bat grows to a max lengrg of only 1.2 inches');
+    var bat = new trivia('What is the worlds smallest mammal?', 'lemur', 'mouse', 'mole', 'bat', 'The Bumble Bee Bat grows to a max length of only 1.2 inches');
 
     var mosquito = new trivia('What is the worlds most dangerous animal to humans?', 'tiger', 'hippo', 'cape buffalo', 'mosqito', 'Mosquito:  ~750,000 deaths a year');
 
@@ -56,9 +62,10 @@ document.addEventListener('DOMContentLoaded', function(){
     function displayTrivia(x) {
  
         // create question node   
-        let spacer = document.createElement('br');
         let question = document.createElement('p');
         let answersP = document.createElement('p');
+
+        // add question text node
         question.appendChild(document.createTextNode(x.question));
 
         // create spans with classes and IDs
@@ -84,15 +91,14 @@ document.addEventListener('DOMContentLoaded', function(){
         answerSP3.appendChild(document.createTextNode(x.option3));
         answerSPA.appendChild(document.createTextNode(x.answer));
 
-        // append to paragraphs
-
+        // append spans to paragraphs
         answersP.appendChild(answerSP1);
         answersP.appendChild(answerSP2);
         answersP.appendChild(answerSP3);
         answersP.appendChild(answerSPA);
     
 
-        // append to document
+        //append to elements to document
         main.appendChild(question);
         main.appendChild(answersP);
         main.appendChild(answersP);
@@ -103,13 +109,47 @@ document.addEventListener('DOMContentLoaded', function(){
         
     }
 
+    // click event handler to update score for correct answers
+    userAnswer = document.addEventListener('click', validateAnswer);
+
+    function validateAnswer(e) {
+        
+        //capture click event for use in score incrementation
+        capturedId = e.target.id;
+
+        //check for valid answer element id's
+        if (e.target.id === 'bat' || e.target.id === 'crocodile' || e.target.id === 'sloth' || e.target.id === 'tortoise' || e.target.id === 'falcon') {
+            //update score and update interface
+            totalScore++;
+            score.innerHTML = '';
+            score.appendChild(document.createTextNode(totalScore));
+            //remove element's valid id so cannot be clicked again for extra points
+            answeredQ = document.getElementById(capturedId);
+            answeredQ.id = '';
+
+            if (totalScore === 5 ) {
+                clearInterval(quizTimer);
+                main.innerHTML = '';
+                main.appendChild(document.createTextNode('Winner!'));
+                pg.value = '';
+                funfacts();
+            }
+
+           
+            
+        }
+        
+
+    }
+    
+    
     // countdown timer for quiz ending
 
     var timeleft = 60;
     var quizTimer = setInterval(function(){
 
         // Quiz timer with progress bar
-        var pg = document.getElementById('progressBar');
+        pg = document.getElementById('progressBar');
         pg.value = 60 - (--timeleft);
         //console.log('DEBUG', timeleft);
         if(timeleft <=0) {
@@ -117,16 +157,7 @@ document.addEventListener('DOMContentLoaded', function(){
             main.innerHTML = '';
             main.appendChild(document.createTextNode('Time is up!'));
             pg.value = '';
-
-            // Show facts about anwser animals
-            for (var z = 0; z < names.length; z ++) {
-                let interesting = document.createElement('p');
-                let lineBreak = document.createElement('br');
-                interesting.appendChild(document.createTextNode(names[z].fact));
-                answers.appendChild(interesting);
-                answers.appendChild(lineBreak);
-            // emd loop
-            }
+            funfacts();
         
         // end timer
         }
@@ -134,6 +165,24 @@ document.addEventListener('DOMContentLoaded', function(){
     // execute every second
     }, 1000);
 
+
+    // fun facts for game's end
+    function funfacts() {
+        heading2 = document.createElement("h3");
+        heading2.appendChild(document.createTextNode("Fun Facts!"));
+        answers.appendChild(heading2);
+        answers.appendChild(spacer);
+
+        // Show facts about anwser animals
+        for (var z = 0; z < names.length; z ++) {
+            let interesting = document.createElement('p');
+            let lineBreak = document.createElement('br');
+            interesting.appendChild(document.createTextNode(names[z].fact));
+            answers.appendChild(interesting);
+            answers.appendChild(lineBreak);
+        // emd loop
+        }
+    }
     
     //start the game
     init();
