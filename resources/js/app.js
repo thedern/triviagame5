@@ -56,6 +56,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
             displayTrivia(names[i]);
         }
+
+        questionMarks = document.createElement('p');
+        questionMarks.id = "marks";
+        questionMarks.appendChild(document.createTextNode('???????'));
+        answers.appendChild(questionMarks);
     }
 
     // function takes argument of array memeber (trivia object)
@@ -130,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function(){
             if (totalScore === 5 ) {
                 clearInterval(quizTimer);
                 main.innerHTML = '';
+                answers.innerHTML = '';
                 main.appendChild(document.createTextNode('Winner!'));
                 pg.value = '';
                 funfacts();
@@ -155,6 +161,7 @@ document.addEventListener('DOMContentLoaded', function(){
         if(timeleft <=0) {
             clearInterval(quizTimer);
             main.innerHTML = '';
+            answers.innerHTML = '';
             main.appendChild(document.createTextNode('Time is up!'));
             pg.value = '';
             funfacts();

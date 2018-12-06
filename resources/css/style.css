@@ -2,7 +2,7 @@
 body {
     font-family: 'Black Ops One', cursive;
     /* font-family: 'Wallpoet', cursive; */
-    background-image: url(../img/wood.jpg);
+    background-image: url(../img/jungle.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100%;
@@ -56,4 +56,8 @@ body {
 #answers h3 {
     color: darkblue;
     font-size: 2.5em;
+}
+
+#answers #marks {
+    font-Size: 12em;
 }
