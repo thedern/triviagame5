@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function(){
             displayTrivia(names[i]);
         }
 
-        questionMarks = document.createElement('p');
+        let questionMarks = document.createElement('p');
         questionMarks.id = "marks";
         questionMarks.appendChild(document.createTextNode('???????'));
         answers.appendChild(questionMarks);
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function(){
             score.innerHTML = '';
             score.appendChild(document.createTextNode(totalScore));
             //remove element's valid id so cannot be clicked again for extra points
-            answeredQ = document.getElementById(capturedId);
+            let answeredQ = document.getElementById(capturedId);
             answeredQ.id = '';
 
             if (totalScore === 5 ) {
@@ -175,8 +175,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
     // fun facts for game's end
     function funfacts() {
-        heading2 = document.createElement("h3");
-        heading2.appendChild(document.createTextNode("Fun Facts!"));
+        let heading2 = document.createElement('h3');
+        heading2.appendChild(document.createTextNode('Fun Facts!'));
         answers.appendChild(heading2);
         answers.appendChild(spacer);
 
